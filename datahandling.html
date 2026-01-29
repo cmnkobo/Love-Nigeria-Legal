@@ -1,1 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Love Nigeria – Data Handling & Deletion</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-soft: #020617;
+      --card: #020617;
+      --accent: #f97316;
+      --accent-soft: rgba(249,115,22,0.12);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --shadow-soft: 0 18px 40px rgba(15,23,42,0.9);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1e293b 0, #020617 60%, #000 100%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      padding: 24px 16px 32px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 780px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.4);
+      box-shadow: 0 14px 40px rgba(15,23,42,0.8);
+      margin-bottom: 16px;
+      backdrop-filter: blur(18px);
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 5px var(--accent-soft);
+    }
+
+    .badge span {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, #111827 0, #020617 40%);
+      border-radius: 28px;
+      border: 1px solid rgba(148,163,184,0.2);
+      padding: 24px 20px 26px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(249,115,22,0.12) 0, transparent 55%),
+        radial-gradient(circle at bottom right, rgba(59,130,246,0.15) 0, transparent 60%);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    header {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 18px;
+    }
+
+    .app-tag {
+      display: inline-flex;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      background: rgba(15,23,42,0.92);
+      border: 1px solid rgba(148,163,184,0.3);
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 24px;
+      line-height: 1.2;
+      margin-bottom: 6px;
+      background: linear-gradient(to right, #e5e7eb, #f97316);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(55,65,81,0.9);
+    }
+
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .pill-soft {
+      background: rgba(15,23,42,0.8);
+      border-color: rgba(75,85,99,0.9);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 16px;
+    }
+
+    /* Sections */
+    .section {
+      background: rgba(15,23,42,0.96);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(75,85,99,0.75);
+      padding: 14px 14px 16px;
+      margin-bottom: 10px;
+      box-shadow: 0 10px 22px rgba(15,23,42,0.7);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #f9fafb;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-index {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(249,115,22,0.8);
+      color: var(--accent);
+      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(15,23,42,0.9);
+    }
+
+    .section-chip {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: rgba(31,41,55,0.95);
+      border: 1px dashed rgba(148,163,184,0.7);
+      color: var(--muted);
+    }
+
+    .section p {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .list {
+      margin-top: 4px;
+      padding-left: 16px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .list li {
+      margin-bottom: 3px;
+      line-height: 1.5;
+    }
+
+    /* Right column highlight */
+    .side {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .callout {
+      background: rgba(15,23,42,0.98);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(55,65,81,0.9);
+      padding: 14px 14px 16px;
+      box-shadow: 0 18px 32px rgba(15,23,42,0.9);
+    }
+
+    .callout-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #f9fafb;
+      margin-bottom: 6px;
+    }
+
+    .callout p {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 6px;
+    }
+
+    .highlight-box {
+      border-radius: var(--radius-md);
+      border: 1px dashed rgba(148,163,184,0.8);
+      padding: 10px 10px;
+      background: radial-gradient(circle at top left, rgba(249,115,22,0.1) 0, rgba(15,23,42,0.98) 60%);
+      margin-top: 6px;
+    }
+
+    .highlight-box p {
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+
+    .inline-list {
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .inline-list span {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-right: 8px;
+      margin-bottom: 4px;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(148,163,184,0.9);
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      margin-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    footer a {
+      color: #f97316;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    /* Responsive */
+    @media (max-width: 720px) {
+      body {
+        padding: 18px 12px 28px;
+      }
+
+      .card {
+        border-radius: 22px;
+        padding: 18px 14px 20px;
+      }
+
+      main {
+        grid-template-columns: minmax(0,1fr);
+      }
+
+      header {
+        margin-bottom: 16px;
+      }
+
+      h1 {
+        font-size: 20px;
+      }
+
+      .section {
+        padding: 12px 12px 14px;
+      }
+
+      .callout {
+        padding: 12px 12px 14px;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-links {
+        justify-content: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="badge">
+      <div class="badge-dot"></div>
+      <span>Data handling & deletion · Love Nigeria</span>
+    </div>
+
+    <div class="card">
+      <header>
+        <div class="app-tag">Love Nigeria · Lagos dating app</div>
+        <h1>How we handle your data</h1>
+        <p class="subtitle">
+          This page explains what we collect, how we use and protect it, and how you can access, update, or delete your information.
+        </p>
+        <div class="meta-row">
+          <div class="pill">
+            <span class="pill-dot"></span>
+            <span>Privacy focused</span>
+          </div>
+          <div class="pill pill-soft">
+            <span>Last updated: 2026</span>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <!-- LEFT: main sections -->
+        <div>
+          <section class="section">
+            <div class="section-header">
+              <div class="section-title">
+                <span class="section-index">1</span>
+                <span>What data we collect</span>
+              </div>
+              <div class="section-chip">Collection</div>
+            </div>
+            <p>
+              We only collect the minimum information needed to run the app and keep users safe.
+            </p>
+            <ul class="list">
+              <li><strong>Account</strong> details: name, email address, phone number, date of birth, gender, and password (stored in secure, hashed form where applicable).</li>
+              <li><strong>Profile</strong> information: photos, bio, interests, location (city/region), and preferences used for matching.</li>
+              <li><strong>Usage</strong> data: app interactions, likes, matches, messages, and basic device info (device model, OS version) for security and analytics.</li>
+              <li><strong>Third‑party sign‑in</strong>: if you sign in with providers like Facebook or Google, we may receive your name, email, profile picture, and a unique login ID.</li>
+            </ul>
+            <p>We do not post to any of your social media accounts.</p>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <div class="section-title">
+                <span class="section-index">2</span>
+                <span>How we use your data</span>
+              </div>
+              <div class="section-chip">Usage</div>
+            </div>
+            <p>
+              Your information is used only to provide and improve the dating service.
+            </p>
+            <ul class="list">
+              <li>Creating and managing your account and profile.</li>
+              <li>Showing compatible matches based on your profile, preferences, and location.</li>
+              <li>Enabling chat, likes, matches, and other in‑app interactions.</li>
+              <li>Protecting users by detecting spam, fraud, and abuse and enforcing our safety rules.</li>
+              <li>Improving the app using anonymous or aggregated statistics.</li>
+            </ul>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <div class="section-title">
+                <span class="section-index">3</span>
+                <span>Storage & protection</span>
+              </div>
+              <div class="section-chip">Security</div>
+            </div>
+            <p>
+              We use reputable services and safeguards to protect your information.
+            </p>
+            <ul class="list">
+              <li>Data is stored on secure servers provided by trusted cloud providers (for example, Firebase / Google Cloud).</li>
+              <li>Passwords, tokens, and other sensitive data are stored in encrypted or hashed form where appropriate.</li>
+              <li>Access to personal data is restricted to authorized personnel and systems that need it to operate the service.</li>
+            </ul>
+            <p>
+              No method of transmission or storage is 100% secure, so we cannot guarantee absolute security, but we work hard to keep your data safe.
+            </p>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <div class="section-title">
+                <span class="section-index">4</span>
+                <span>Sharing with third parties</span>
+              </div>
+              <div class="section-chip">Sharing</div>
+            </div>
+            <p>
+              We do not sell your personal data.
+            </p>
+            <ul class="list">
+              <li><strong>Service providers</strong>: we may share limited information with companies that help with hosting, analytics, messaging, or payments, under strict confidentiality terms.</li>
+              <li><strong>Legal & safety</strong>: we may share information when required by law or to protect our rights, other users, or the public (for example, responding to a valid legal request).</li>
+            </ul>
+            <p>
+              Any third‑party providers may only use your data to provide services to us, not for their own purposes.
+            </p>
+          </section>
+        </div>
+
+        <!-- RIGHT: user control / deletion -->
+        <aside class="side">
+          <div class="callout">
+            <div class="callout-title">Your control over your data</div>
+            <p>
+              You can access, update, or delete your information directly inside the Love Nigeria app where possible.
+            </p>
+            <div class="highlight-box">
+              <p><strong>Update your data</strong></p>
+              <ul class="list">
+                <li>Edit profile information (photos, bio, interests, preferences) in your profile screen.</li>
+              </ul>
+              <p style="margin-top:6px;"><strong>Delete content</strong></p>
+              <ul class="list">
+                <li>Remove or change photos and other profile details at any time in your account settings.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout">
+            <div class="callout-title">Deleting your account</div>
+            <p>
+              You can permanently delete your account from within the app (for example: Settings → Account → Delete account; wording may differ slightly).
+            </p>
+            <div class="highlight-box">
+              <p><strong>When you delete your account</strong></p>
+              <ul class="list">
+                <li>Your profile is no longer visible to other users.</li>
+                <li>We remove or anonymize personal data that identifies you, except where we must keep certain details to meet legal obligations, resolve disputes, or prevent abuse.</li>
+                <li>Some non‑identifying data (such as aggregated statistics) may remain for analytics and security.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout">
+            <div class="callout-title">Requesting data deletion by email</div>
+            <p>
+              If you cannot delete your account in the app or want specific data removed, you can contact us directly.
+            </p>
+            <div class="highlight-box">
+              <p><strong>Send an email titled</strong></p>
+              <p>“Data Deletion Request – Love Nigeria”</p>
+              <p style="margin-top:6px;"><strong>Include</strong></p>
+              <ul class="list">
+                <li>Full name</li>
+                <li>Registered email address and/or phone number</li>
+                <li>Username (if applicable)</li>
+                <li>A clear statement that you want your account and personal data deleted</li>
+              </ul>
+              <p style="margin-top:6px;">
+                Send to: <a href="mailto:your-support-email@example.com">your-support-email@example.com</a>
+              </p>
+              <p style="margin-top:4px;">
+                After we confirm your identity, we will delete or anonymize your personal data within a reasonable time (usually within 30 days), unless the law requires us to keep it longer.
+              </p>
+            </div>
+          </div>
+
+          <div class="callout">
+            <div class="callout-title">Changes to this notice</div>
+            <p>
+              We may update this Data Handling and Deletion notice from time to time to reflect app or legal changes.
+            </p>
+            <p class="inline-list">
+              <span><span class="dot"></span><span>We will notify you in the app or by other appropriate means if there are major updates.</span></span>
+              <span><span class="dot"></span><span>The “last updated” date at the top will be revised when changes are made.</span></span>
+            </p>
+          </div>
+        </aside>
+      </main>
+
+      <footer>
+        <div>Love Nigeria · Lagos dating app</div>
+        <div class="footer-links">
+          <span>For questions, email <a href="mailto:your-support-email@example.com">your-support-email@example.com</a></span>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
