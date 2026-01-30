@@ -4,116 +4,605 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Love Nigeria – Terms of Service</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
   <style>
-    body { font-family: Arial, sans-serif; max-width: 900px; margin: 40px auto; padding: 20px; line-height: 1.6; color: #333; }
-    h1 { color: #2c3e50; border-bottom: 3px solid #e74c3c; padding-bottom: 10px; }
-    h2 { color: #34495e; margin-top: 30px; font-size: 1.3em; }
-    p { margin: 15px 0; }
-    ul { margin: 10px 0; padding-left: 25px; }
-    li { margin: 8px 0; }
-    .last-updated { background: #ecf0f1; padding: 10px; border-left: 4px solid #e74c3c; margin: 20px 0; font-weight: bold; }
-    .intro { background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0; }
-    .contact { background: #f8f9fa; padding: 15px; border-radius: 5px; margin-top: 30px; }
-    strong { color: #2c3e50; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #EC4899;
+      --primary-dark: #DB2777;
+      --secondary: #8B5CF6;
+      --dark: #0F172A;
+      --dark-soft: #1E293B;
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+      --border: rgba(148, 163, 184, 0.2);
+      --glass: rgba(15, 23, 42, 0.7);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 40px 20px;
+      position: relative;
+    }
+
+    .bg-animation {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .gradient-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.2;
+    }
+
+    .orb-1 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+      top: -100px;
+      right: -100px;
+    }
+
+    .orb-2 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
+      bottom: -100px;
+      left: -100px;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 32px;
+      transition: color 0.3s;
+    }
+
+    .back-link:hover {
+      color: var(--primary);
+    }
+
+    .page-header {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 48px;
+      margin-bottom: 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+
+    .doc-icon {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin: 0 auto 24px;
+      box-shadow: 0 12px 32px rgba(236, 72, 153, 0.4);
+    }
+
+    h1 {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 900;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--text) 0%, var(--text-muted) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto 24px;
+      line-height: 1.7;
+    }
+
+    .effective-date {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      border-radius: 20px;
+      background: rgba(236, 72, 153, 0.1);
+      border: 1px solid rgba(236, 72, 153, 0.3);
+      font-size: 14px;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .effective-icon {
+      width: 24px;
+      height: 24px;
+      background: var(--primary);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .content-card {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    h2::before {
+      content: '';
+      width: 4px;
+      height: 24px;
+      background: linear-gradient(180deg, var(--primary), var(--secondary));
+      border-radius: 2px;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    ul {
+      list-style: none;
+      margin: 16px 0;
+    }
+
+    li {
+      padding-left: 32px;
+      margin-bottom: 12px;
+      position: relative;
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    a:hover {
+      color: var(--secondary);
+    }
+
+    a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: width 0.3s;
+    }
+
+    a:hover::after {
+      width: 100%;
+    }
+
+    .highlight-box {
+      background: rgba(236, 72, 153, 0.05);
+      border: 1px dashed rgba(236, 72, 153, 0.3);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+
+    .contact-card {
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(139, 92, 246, 0.1));
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(236, 72, 153, 0.3);
+      border-radius: 20px;
+      padding: 40px;
+      margin-top: 32px;
+      text-align: center;
+    }
+
+    .contact-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin: 0 auto 20px;
+      box-shadow: 0 12px 32px rgba(236, 72, 153, 0.4);
+    }
+
+    .contact-card h2 {
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .contact-card h2::before {
+      display: none;
+    }
+
+    .contact-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 32px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(236, 72, 153, 0.4);
+      border-radius: 16px;
+      font-size: 16px;
+      color: var(--primary);
+      font-weight: 700;
+      margin-top: 16px;
+      transition: all 0.3s;
+    }
+
+    .contact-email:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(236, 72, 153, 0.4);
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .contact-email::after {
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 60px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-brand {
+      font-size: 20px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+
+    .footer-text {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 24px 16px;
+      }
+
+      .page-header {
+        padding: 32px 24px;
+      }
+
+      .content-card {
+        padding: 28px 24px;
+      }
+
+      .contact-card {
+        padding: 28px 24px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>Terms of Service</h1>
-  
-  <div class="last-updated">
-    Last updated: January 18, 2026
+  <div class="bg-animation">
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
   </div>
 
-  <div class="intro">
-    <p>These Terms of Service ("Terms") govern your access to and use of <strong>Love Nigeria</strong> (the "App" or "Service"), operated by Christian Mkobo Michael.</p>
-    <p>By creating an account, accessing, or using the Service, you agree to be bound by these Terms and our Privacy Policy.</p>
-    <p><strong>If you do not agree to these Terms, you must not use the Service.</strong></p>
+  <div class="container">
+    <a href="index.html" class="back-link">← Back to Home</a>
+
+    <div class="page-header">
+      <div class="doc-icon">📜</div>
+      <h1>Terms of Service</h1>
+      <p class="page-subtitle">
+        These Terms explain how you can use the Love Nigeria app and what you can expect from us in return.
+      </p>
+      <div class="effective-date">
+        <div class="effective-icon">📅</div>
+        Last Updated: January 18, 2026
+      </div>
+    </div>
+
+    <div class="content-card">
+      <p>
+        These Terms of Service (<strong>"Terms"</strong>) govern your access to and use of the <strong>Love Nigeria</strong> mobile application and related services (collectively, the <strong>"Service"</strong>), operated by Christian Mkobo Michael (<strong>"we"</strong>, <strong>"us"</strong>, or <strong>"our"</strong>).
+      </p>
+      <p>
+        By creating an account, accessing, or using the Service, you agree to be bound by these Terms and our <a href="privacy-policy.html">Privacy Policy</a>.
+      </p>
+      <div class="highlight-box">
+        <p>
+          <strong>Important:</strong> If you do not agree to these Terms, you must not download, access, or use the Service.
+        </p>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <h2>1. Eligibility</h2>
+      <p>
+        You must be at least <strong>18 years old</strong> and have the legal capacity to enter into a binding agreement to use Love Nigeria.
+      </p>
+      <p>
+        By using the Service, you confirm that you meet these eligibility requirements and are not prohibited by any law from using dating services.
+      </p>
+    </div>
+
+    <div class="content-card">
+      <h2>2. Accounts and Registration</h2>
+      <p>
+        To use certain features of the Service, you must create an account and provide accurate, current, and complete information during registration.
+      </p>
+      <p>
+        You are responsible for maintaining the confidentiality of your login credentials and for all activities that occur under your account.
+      </p>
+      <p>
+        You agree to notify us immediately if you suspect any unauthorized access or use of your account.
+      </p>
+      <p>
+        We reserve the right to suspend or terminate your account if we believe you have violated these Terms, our policies, or any applicable law.
+      </p>
+    </div>
+
+    <div class="content-card">
+      <h2>3. Acceptable Use</h2>
+      <p>
+        You agree to use the Service only for lawful, personal, and non-commercial purposes and in a respectful manner toward other users.
+      </p>
+      <p><strong>You must not:</strong></p>
+      <ul>
+        <li>Harass, threaten, abuse, stalk, or impersonate any person or entity.</li>
+        <li>Post or share illegal, hateful, explicit, violent, or discriminatory content.</li>
+        <li>Use the Service to engage in scams, fraud, or solicit money or sensitive personal data.</li>
+        <li>Violate the intellectual property or privacy rights of others.</li>
+        <li>Attempt to hack, disrupt, reverse-engineer, or compromise the security or integrity of the Service.</li>
+        <li>Create fake profiles, use bots, or manipulate matching, visibility, or other app mechanics.</li>
+      </ul>
+    </div>
+
+    <div class="content-card">
+      <h2>4. User Content</h2>
+      <p>
+        You remain the owner of the content you submit through the Service, including photos, bios, messages, and other profile information (<strong>"User Content"</strong>).
+      </p>
+      <p>
+        By submitting User Content, you grant us a worldwide, non-exclusive, royalty-free, sublicensable license to use, host, store, reproduce, modify, display, and distribute your User Content as needed to operate, improve, and promote the Service.
+      </p>
+      <p>
+        You are responsible for ensuring that your User Content does not violate these Terms or the rights of any third party.
+      </p>
+      <p>
+        We may, but are not obligated to, monitor, edit, or remove User Content that we believe violates these Terms or applicable laws.
+      </p>
+    </div>
+
+    <div class="content-card">
+      <h2>5. Subscriptions and Payments</h2>
+      <p>
+        Love Nigeria may offer free and paid subscription plans (such as Gold or Platinum tiers) that unlock additional features.
+      </p>
+      <p>
+        Pricing, billing cycles, and available features will be presented at the time of purchase within the app or relevant app store.
+      </p>
+      <p>
+        Paid subscriptions generally auto-renew at the end of each billing period unless you cancel in accordance with the app store’s or payment provider’s procedures.
+      </p>
+      <p>
+        Refunds are not guaranteed and, where applicable, may be handled on a case-by-case basis in line with app store policies and local law.
+      </p>
+    </div>
+
+    <div class="content-card">
+      <h2>6. Privacy and Data</h2>
+      <p>
+        Your use of the Service is subject to our <a href="privacy-policy.html">Privacy Policy</a>, which explains how we collect, use, and protect your personal data.
+      </p>
+      <p>
+        By using the Service, you consent to the collection and processing of your information as described in the Privacy Policy.
+      </p>
+      <p>
+        You may have rights to access, update, or delete your data, as described in our Privacy Policy and any applicable <a href="facebook-data-deletion.html">Data Deletion Instructions</a>.
+      </p>
+    </div>
+
+    <div class="content-card">
+      <h2>7. Prohibited Activities</h2>
+      <p>
+        In addition to the Acceptable Use rules, you agree not to:
+      </p>
+      <ul>
+        <li>Use the Service if you are a convicted sex offender or prohibited from using dating platforms by law or court order.</li>
+        <li>Request or share financial information, passwords, or other highly sensitive details with other users.</li>
+        <li>Use the Service for advertising, marketing, or other commercial purposes without our prior written consent.</li>
+        <li>Interfere with other users’ access to the Service or attempt to overload or disrupt our systems.</li>
+      </ul>
+    </div>
+
+    <div class="content-card">
+      <h2>8. Termination</h2>
+      <p>
+        You may delete your account at any time through the in-app settings or by contacting us using the details below.
+      </p>
+      <p>
+        We may suspend or terminate your access to the Service, with or without notice, if we reasonably believe that you:
+      </p>
+      <ul>
+        <li>Have violated these Terms, our policies, or applicable laws.</li>
+        <li>Have engaged in fraudulent, abusive, or harmful behavior.</li>
+        <li>Pose a risk to the safety of other users or the integrity of the Service.</li>
+      </ul>
+      <p>
+        Upon termination, your right to access and use the Service will immediately cease, and certain data associated with your account may be retained or deleted in accordance with our Privacy Policy.
+      </p>
+    </div>
+
+    <div class="content-card">
+      <h2>9. Intellectual Property</h2>
+      <p>
+        The Service, including its name, logo, design, software, and all other non-user content, is owned by us or our licensors and is protected by copyright, trademark, and other intellectual property laws.
+      </p>
+      <p>
+        You may not copy, modify, distribute, translate, reverse-engineer, or create derivative works of any part of the Service, except as explicitly allowed by these Terms or mandatory law.
+      </p>
+    </div>
+
+    <div class="content-card">
+      <h2>10. Disclaimer of Warranties</h2>
+      <p>
+        The Service is provided on an <strong>"AS IS"</strong> and <strong>"AS AVAILABLE"</strong> basis, without any warranties of any kind, whether express or implied.
+      </p>
+      <p>
+        We do not guarantee that the Service will be uninterrupted, secure, or error-free, or that you will find a match or successfully build relationships through the app.
+      </p>
+      <p>
+        To the fullest extent permitted by law, we disclaim all warranties, including implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
+      </p>
+    </div>
+
+    <div class="content-card">
+      <h2>11. Limitation of Liability</h2>
+      <p>
+        To the maximum extent permitted by law, we are not liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or data, arising from or related to your use of the Service.
+      </p>
+      <p>
+        Our total aggregate liability to you for any claims related to the Service will not exceed the greater of the amount you paid for the Service in the six (6) months prior to the event giving rise to the claim, or 50 USD (or equivalent in local currency).
+      </p>
+      <p>
+        Some jurisdictions do not allow certain limitations or exclusions of liability, so some of the above limitations may not apply to you.
+      </p>
+    </div>
+
+    <div class="content-card">
+      <h2>12. Changes to the Service and Terms</h2>
+      <p>
+        We may update or modify the Service from time to time, including adding or removing features, to improve functionality or address technical, legal, or business needs.
+      </p>
+      <p>
+        We may also update these Terms periodically. When we make material changes, we will update the "Last Updated" date above and may notify you via the app or other appropriate channels.
+      </p>
+      <p>
+        Your continued use of the Service after any changes take effect means you accept the updated Terms.
+      </p>
+    </div>
+
+    <div class="content-card">
+      <h2>13. Governing Law</h2>
+      <p>
+        These Terms and any dispute arising out of or relating to them or the Service are governed by the laws of <strong>Nigeria</strong>, without regard to conflict-of-law principles.
+      </p>
+      <p>
+        You agree that any legal action or proceeding will be brought exclusively in the courts of Nigeria, unless mandatory law provides otherwise.
+      </p>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-icon">📧</div>
+      <h2>14. Contact Information</h2>
+      <p style="color: var(--text-muted); margin-bottom: 20px;">
+        If you have any questions, concerns, or feedback about these Terms or the Service, please reach out.
+      </p>
+      <a href="mailto:providencechris11@gmail.com" class="contact-email">
+        📮 providencechris11@gmail.com
+      </a>
+    </div>
+
+    <footer>
+      <div class="footer-brand">💕 Love Nigeria</div>
+      <p class="footer-text">
+        © <span id="year">2025</span> Love Nigeria. All rights reserved. Built with love for real connections.
+      </p>
+    </footer>
   </div>
 
-  <h2>1. Eligibility</h2>
-  <p>You must be at least <strong>18 years old</strong> to use Love Nigeria.</p>
-  <p>By using the Service, you confirm that you meet this age requirement and have the legal capacity to enter into these Terms.</p>
-
-  <h2>2. Accounts and Registration</h2>
-  <p>You agree to provide accurate, current, and complete information during registration.</p>
-  <p>You are responsible for maintaining the confidentiality of your login credentials.</p>
-  <p>You are responsible for all activities that occur under your account.</p>
-  <p>We reserve the right to suspend or terminate accounts that violate these Terms or applicable laws.</p>
-
-  <h2>3. Acceptable Use</h2>
-  <p>You agree to use the Service only for lawful purposes.</p>
-  <p><strong>You must not:</strong></p>
-  <ul>
-    <li>Harass, threaten, abuse, or impersonate other users.</li>
-    <li>Share illegal, hateful, explicit, or discriminatory content.</li>
-    <li>Use the Service for scams, fraud, or unsolicited commercial activity.</li>
-    <li>Violate the intellectual property rights of others.</li>
-    <li>Attempt to hack, disrupt, or compromise the security of the Service.</li>
-    <li>Create fake accounts or use bots to manipulate the Service.</li>
-  </ul>
-
-  <h2>4. User Content</h2>
-  <p>You retain ownership of any content you upload (photos, messages, profile information).</p>
-  <p>By posting content, you grant Love Nigeria a worldwide, non-exclusive, royalty-free license to use, display, and distribute your content as necessary to provide the Service.</p>
-  <p>We reserve the right to remove content that violates these Terms.</p>
-
-  <h2>5. Subscription and Payments</h2>
-  <p>Love Nigeria offers free and paid subscription tiers (Gold and Platinum).</p>
-  <p>Payment terms, pricing, and billing cycles are outlined at the time of purchase.</p>
-  <p>Subscriptions auto-renew unless canceled before the renewal date.</p>
-  <p>Refunds are handled on a case-by-case basis and are not guaranteed.</p>
-
-  <h2>6. Privacy and Data</h2>
-  <p>Your use of the Service is governed by our <a href="privacy-policy.html">Privacy Policy</a>.</p>
-  <p>We collect and process personal data to provide and improve the Service.</p>
-  <p>You have the right to request deletion of your data as outlined in our Privacy Policy and <a href="facebook-data-deletion.html">Data Deletion Instructions</a>.</p>
-
-  <h2>7. Prohibited Activities</h2>
-  <p>In addition to the acceptable use restrictions, you may not:</p>
-  <ul>
-    <li>Use the Service if you are a convicted sex offender or prohibited by law.</li>
-    <li>Solicit money or personal information from other users.</li>
-    <li>Engage in commercial activities or advertising without permission.</li>
-    <li>Interfere with other users' experience or the operation of the Service.</li>
-  </ul>
-
-  <h2>8. Termination</h2>
-  <p>You may delete your account at any time through the App settings or by contacting us.</p>
-  <p>We may suspend or terminate your account immediately if you:</p>
-  <ul>
-    <li>Violate these Terms.</li>
-    <li>Engage in fraudulent, illegal, or harmful activities.</li>
-    <li>Pose a risk to other users or the integrity of the Service.</li>
-  </ul>
-  <p>Upon termination, your right to use the Service ends immediately.</p>
-
-  <h2>9. Intellectual Property</h2>
-  <p>All trademarks, logos, and content on the Service (excluding user content) are owned by Love Nigeria or its licensors.</p>
-  <p>You may not copy, modify, distribute, or reverse-engineer any part of the Service without our express permission.</p>
-
-  <h2>10. Disclaimer of Warranties</h2>
-  <p>The Service is provided <strong>"AS IS"</strong> and <strong>"AS AVAILABLE"</strong>.</p>
-  <p>We make no warranties that the Service will be uninterrupted, secure, or error-free, to the maximum extent permitted by law.</p>
-
-  <h2>11. Limitation of Liability</h2>
-  <p>To the maximum extent permitted by law:</p>
-  <p>We are not liable for indirect, incidental, or consequential damages.</p>
-  <p>Our total liability will not exceed the amount you paid (if any) in the last 6 months, or $50 USD, whichever is greater.</p>
-  <p>Some jurisdictions do not allow certain limitations, so some limits may not apply to you.</p>
-
-  <h2>12. Changes to These Terms</h2>
-  <p>We may update these Terms from time to time.</p>
-  <p>When material changes occur, we will update the "Last updated" date and may notify you in the App or by email.</p>
-  <p>Continued use of the Service means you accept the updated Terms.</p>
-
-  <h2>13. Governing Law</h2>
-  <p>These Terms are governed by the laws of <strong>Nigeria</strong>, without regard to conflict-of-law principles.</p>
-  <p>Any disputes shall be resolved in the courts of Nigeria, unless mandatory law provides otherwise.</p>
-
-  <div class="contact">
-    <h2>14. Contact Information</h2>
-    <p>If you have questions or concerns about these Terms, contact us at:</p>
-    <p><strong>Email:</strong> providencechris11@gmail.com</p>
-  </div>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
