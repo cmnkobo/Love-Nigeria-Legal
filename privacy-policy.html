@@ -3,65 +3,538 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Love Nigeria – Privacy Policy</title>
+  <title>Bondly – Privacy Policy</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
   <style>
-    body { font-family: Arial, sans-serif; max-width: 900px; margin: 40px auto; padding: 20px; line-height: 1.6; color: #333; }
-    h1 { color: #2c3e50; border-bottom: 3px solid #e74c3c; padding-bottom: 10px; }
-    h2 { color: #34495e; margin-top: 30px; }
-    p { margin: 15px 0; }
-    .effective-date { background: #ecf0f1; padding: 10px; border-left: 4px solid #e74c3c; margin: 20px 0; }
-    .contact { background: #f8f9fa; padding: 15px; border-radius: 5px; margin-top: 30px; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #EC4899;
+      --primary-dark: #DB2777;
+      --secondary: #8B5CF6;
+      --dark: #0F172A;
+      --dark-soft: #1E293B;
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+      --border: rgba(148, 163, 184, 0.2);
+      --glass: rgba(15, 23, 42, 0.7);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 40px 20px;
+      position: relative;
+    }
+
+    .bg-animation {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .gradient-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.2;
+    }
+
+    .orb-1 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+      top: -100px;
+      right: -100px;
+    }
+
+    .orb-2 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--secondary) 0%, transparent 70%);
+      bottom: -100px;
+      left: -100px;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      margin-bottom: 32px;
+      transition: color 0.3s;
+    }
+
+    .back-link:hover {
+      color: var(--primary);
+    }
+
+    .page-header {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 48px;
+      margin-bottom: 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+
+    .doc-icon {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin: 0 auto 24px;
+      box-shadow: 0 12px 32px rgba(236, 72, 153, 0.4);
+    }
+
+    h1 {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 900;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--text) 0%, var(--text-muted) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 24px;
+      line-height: 1.7;
+    }
+
+    .effective-date {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      border-radius: 20px;
+      background: rgba(236, 72, 153, 0.1);
+      border: 1px solid rgba(236, 72, 153, 0.3);
+      font-size: 14px;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .effective-icon {
+      width: 24px;
+      height: 24px;
+      background: var(--primary);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .content-card {
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    h2::before {
+      content: '';
+      width: 4px;
+      height: 24px;
+      background: linear-gradient(180deg, var(--primary), var(--secondary));
+      border-radius: 2px;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    ul {
+      list-style: none;
+      margin: 16px 0;
+    }
+
+    li {
+      padding-left: 32px;
+      margin-bottom: 12px;
+      position: relative;
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    a:hover {
+      color: var(--secondary);
+    }
+
+    a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: width 0.3s;
+    }
+
+    a:hover::after {
+      width: 100%;
+    }
+
+    .contact-card {
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(139, 92, 246, 0.1));
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(236, 72, 153, 0.3);
+      border-radius: 20px;
+      padding: 40px;
+      margin-top: 32px;
+      text-align: center;
+    }
+
+    .contact-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin: 0 auto 20px;
+      box-shadow: 0 12px 32px rgba(236, 72, 153, 0.4);
+    }
+
+    .contact-card h2 {
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .contact-card h2::before {
+      display: none;
+    }
+
+    .contact-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 32px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(236, 72, 153, 0.4);
+      border-radius: 16px;
+      font-size: 16px;
+      color: var(--primary);
+      font-weight: 700;
+      margin-top: 16px;
+      transition: all 0.3s;
+    }
+
+    .contact-email:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(236, 72, 153, 0.4);
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .contact-email::after {
+      display: none;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 40px 0;
+    }
+
+    strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .highlight-box {
+      background: rgba(236, 72, 153, 0.05);
+      border: 1px dashed rgba(236, 72, 153, 0.3);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 60px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-brand {
+      font-size: 20px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+
+    .footer-text {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 24px 16px;
+      }
+
+      .page-header {
+        padding: 32px 24px;
+      }
+
+      .content-card {
+        padding: 28px 24px;
+      }
+
+      .contact-card {
+        padding: 28px 24px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>Privacy Policy – Love Nigeria</h1>
-  
-  <p>These terms and conditions apply to the Love Nigeria app (hereby referred to as "Application") for mobile devices that was created by Christian Nkobo Michael (hereby referred to as "Service Provider") as a Free service.</p>
-
-  <p>Upon downloading or utilizing the Application, you are automatically agreeing to the following terms. It is strongly advised that you thoroughly read and understand these terms prior to using the Application.</p>
-
-  <h2>Intellectual Property</h2>
-  <p>Unauthorized copying, modification of the Application, any part of the Application, or our trademarks is strictly prohibited. Any attempts to extract the source code of the Application, translate the Application into other languages, or create derivative versions are not permitted. All trademarks, copyrights, database rights, and other intellectual property rights related to the Application remain the property of the Service Provider.</p>
-
-  <h2>Service Commitment</h2>
-  <p>The Service Provider is dedicated to ensuring that the Application is as beneficial and efficient as possible. As such, they reserve the right to modify the Application or charge for their services at any time and for any reason. The Service Provider assures you that any charges for the Application or its services will be clearly communicated to you.</p>
-
-  <h2>Data Collection and Usage</h2>
-  <p>The Application stores and processes personal data that you have provided to the Service Provider in order to provide the Service. It is your responsibility to maintain the security of your phone and access to the Application. The Service Provider strongly advises against jailbreaking or rooting your phone, which involves removing software restrictions and limitations imposed by the official operating system of your device. Such actions could expose your phone to malware, viruses, malicious programs, compromise your phone's security features, and may result in the Application not functioning correctly or at all.</p>
-
-  <h2>Third-Party Services</h2>
-  <p>Please note that the Application utilizes third-party services that have their own Terms and Conditions. Below are the links to the Terms and Conditions of the third-party service providers used by the Application:</p>
-  <ul>
-    <li><a href="https://policies.google.com/terms" target="_blank">Google Play Services</a></li>
-  </ul>
-
-  <h2>Internet Connection and Data Charges</h2>
-  <p>Please be aware that the Service Provider does not assume responsibility for certain aspects. Some functions of the Application require an active internet connection, which can be Wi-Fi or provided by your mobile network provider. The Service Provider cannot be held responsible if the Application does not function at full capacity due to lack of access to Wi-Fi or if you have exhausted your data allowance.</p>
-
-  <p>If you are using the application outside of a Wi-Fi area, please be aware that your mobile network provider's agreement terms still apply. Consequently, you may incur charges from your mobile provider for data usage during the connection to the application, or other third-party charges. By using the Application, you accept responsibility for any such charges, including roaming data charges if you use the Application outside of your home territory (i.e., region or country) without disabling data roaming. If you are not the bill payer for the device on which you are using the Application, they assume that you have obtained permission from the bill payer.</p>
-
-  <h2>Service Provider Responsibility</h2>
-  <p>Similarly, the Service Provider cannot always assume responsibility for your usage of the application. For instance, it is your responsibility to ensure that your device remains charged. If your device runs out of battery and you are unable to access the Service, the Service Provider cannot be held responsible.</p>
-
-  <p>In terms of the Service Provider's responsibility for your use of the application, it is important to note that while they strive to ensure that it is updated and accurate at all times, they do rely on third parties to provide information to them so that they can make it available to you. The Service Provider accepts no liability for any loss, direct or indirect, that you experience as a result of relying entirely on this functionality of the application.</p>
-
-  <h2>Artificial Intelligence Features</h2>
-  <p>The Application incorporates Artificial Intelligence (AI) technologies to provide certain features or services. By using the Application, you acknowledge and agree to the use of AI technologies as part of the Application's functionality.</p>
-
-  <h2>Updates and Changes</h2>
-  <p>The Service Provider may wish to update the application at some point. The application is currently available as per the requirements for the operating system (and for any additional systems they decide to extend the availability of the application to) may change, and you will need to download the updates if you want to continue using the application. The Service Provider does not guarantee that it will always update the application so that it is relevant to you and/or compatible with the particular operating system version installed on your device.</p>
-
-  <h2>Changes to Terms and Conditions</h2>
-  <p>The Service Provider may periodically update their Terms and Conditions. Therefore, you are advised to review this page regularly for any changes. The Service Provider will notify you of any changes by posting the new Terms and Conditions on this page.</p>
-
-  <div class="effective-date">
-    <strong>Effective Date:</strong> January 17, 2026
+  <div class="bg-animation">
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
   </div>
 
-  <div class="contact">
-    <h2>Contact Us</h2>
-    <p>If you have any questions or suggestions about the Privacy Policy or Terms and Conditions, please do not hesitate to contact the Service Provider at:</p>
-    <p><strong>Email:</strong> providencechris11@gmail.com</p>
+  <div class="container">
+    <a href="index.html" class="back-link">← Back to Home</a>
+
+    <div class="page-header">
+      <div class="doc-icon">📋</div>
+      <h1>Privacy Policy</h1>
+      <p class="page-subtitle">
+        Your privacy matters to us. This policy explains how Bondly collects, uses, and protects your personal information.
+      </p>
+      <div class="effective-date">
+        <div class="effective-icon">📅</div>
+        Effective Date: January 17, 2026
+      </div>
+    </div>
+
+    <div class="content-card">
+      <p>
+        These terms and conditions apply to the <strong>Bondly</strong> app (hereby referred to as "Application") for mobile devices that was created by Christian Nkobo Michael (hereby referred to as "Service Provider") as a Free service.
+      </p>
+      <p>
+        Upon downloading or utilizing the Application, you are automatically agreeing to the following terms. It is strongly advised that you thoroughly read and understand these terms prior to using the Application.
+      </p>
+    </div>
+
+    <div class="content-card">
+      <h2>Intellectual Property</h2>
+      <p>
+        Unauthorized copying, modification of the Application, any part of the Application, or our trademarks is strictly prohibited. Any attempts to extract the source code of the Application, translate the Application into other languages, or create derivative versions are not permitted.
+      </p>
+      <p>
+        All trademarks, copyrights, database rights, and other intellectual property rights related to the Application remain the property of the Service Provider.
+      </p>
+    </div>
+
+    <div class="content-card">
+      <h2>Service Commitment</h2>
+      <p>
+        The Service Provider is dedicated to ensuring that the Application is as beneficial and efficient as possible. As such, they reserve the right to modify the Application or charge for their services at any time and for any reason.
+      </p>
+      <p>
+        The Service Provider assures you that any charges for the Application or its services will be clearly communicated to you.
+      </p>
+    </div>
+
+    <div class="content-card">
+      <h2>Data Collection and Usage</h2>
+      <p>
+        The Application stores and processes personal data that you have provided to the Service Provider in order to provide the Service. It is your responsibility to maintain the security of your phone and access to the Application.
+      </p>
+      <div class="highlight-box">
+        <p>
+          <strong>Important Security Notice:</strong> The Service Provider strongly advises against jailbreaking or rooting your phone, which involves removing software restrictions and limitations imposed by the official operating system of your device. Such actions could expose your phone to malware, viruses, malicious programs, compromise your phone's security features, and may result in the Application not functioning correctly or at all.
+        </p>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <h2>Third-Party Services</h2>
+      <p>
+        Please note that the Application utilizes third-party services that have their own Terms and Conditions. Below are the links to the Terms and Conditions of the third-party service providers used by the Application:
+      </p>
+      <ul>
+        <li><a href="https://policies.google.com/terms" target="_blank">Google Play Services</a></li>
+        <li><a href="https://firebase.google.com/terms" target="_blank">Firebase Services</a></li>
+      </ul>
+    </div>
+
+    <div class="content-card">
+      <h2>Internet Connection and Data Charges</h2>
+      <p>
+        Please be aware that the Service Provider does not assume responsibility for certain aspects. Some functions of the Application require an active internet connection, which can be Wi-Fi or provided by your mobile network provider.
+      </p>
+      <p>
+        The Service Provider cannot be held responsible if the Application does not function at full capacity due to lack of access to Wi-Fi or if you have exhausted your data allowance.
+      </p>
+      <div class="highlight-box">
+        <p>
+          <strong>Data Usage Notice:</strong> If you are using the application outside of a Wi-Fi area, your mobile network provider's agreement terms still apply. Consequently, you may incur charges from your mobile provider for data usage during the connection to the application, or other third-party charges.
+        </p>
+        <p>
+          By using the Application, you accept responsibility for any such charges, including roaming data charges if you use the Application outside of your home territory without disabling data roaming.
+        </p>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <h2>Service Provider Responsibility</h2>
+      <p>
+        The Service Provider cannot always assume responsibility for your usage of the application. For instance, it is your responsibility to ensure that your device remains charged. If your device runs out of battery and you are unable to access the Service, the Service Provider cannot be held responsible.
+      </p>
+      <p>
+        In terms of the Service Provider's responsibility for your use of the application, it is important to note that while they strive to ensure that it is updated and accurate at all times, they do rely on third parties to provide information to them so that they can make it available to you.
+      </p>
+      <p>
+        The Service Provider accepts no liability for any loss, direct or indirect, that you experience as a result of relying entirely on this functionality of the application.
+      </p>
+    </div>
+
+    <div class="content-card">
+      <h2>Artificial Intelligence Features</h2>
+      <p>
+        The Application incorporates Artificial Intelligence (AI) technologies to provide certain features or services, including:
+      </p>
+      <ul>
+        <li>Smart matching algorithms</li>
+        <li>Profile verification assistance</li>
+        <li>Content moderation and safety features</li>
+        <li>Personalized recommendations</li>
+      </ul>
+      <p>
+        By using the Application, you acknowledge and agree to the use of AI technologies as part of the Application's functionality.
+      </p>
+    </div>
+
+    <div class="content-card">
+      <h2>Updates and Changes</h2>
+      <p>
+        The Service Provider may wish to update the application at some point. The application is currently available as per the requirements for the operating system (and for any additional systems they decide to extend the availability of the application to) may change, and you will need to download the updates if you want to continue using the application.
+      </p>
+      <p>
+        The Service Provider does not guarantee that it will always update the application so that it is relevant to you and/or compatible with the particular operating system version installed on your device.
+      </p>
+    </div>
+
+    <div class="content-card">
+      <h2>Changes to Terms and Conditions</h2>
+      <p>
+        The Service Provider may periodically update their Terms and Conditions. Therefore, you are advised to review this page regularly for any changes.
+      </p>
+      <p>
+        The Service Provider will notify you of any changes by posting the new Terms and Conditions on this page and updating the "Effective Date" at the top of this document.
+      </p>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-icon">📧</div>
+      <h2>Contact Us</h2>
+      <p style="color: var(--text-muted); margin-bottom: 20px;">
+        If you have any questions or suggestions about the Privacy Policy or Terms and Conditions, please do not hesitate to contact the Service Provider.
+      </p>
+      <a href="mailto:providencechris11@gmail.com" class="contact-email">
+        📮 providencechris11@gmail.com
+      </a>
+    </div>
+
+    <footer>
+      <div class="footer-brand">💕 Bondly</div>
+      <p class="footer-text">© <span id="year">2025</span> Bondly. All rights reserved. Built with love for real connections.</p>
+    </footer>
   </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
